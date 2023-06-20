@@ -1,18 +1,18 @@
-import Vue from "vue";
-import App from "./App.vue";
-import VueAxios from "vue-axios";
-import axios from "axios";
+import Vue from 'vue';
+import App from './App.vue';
+import VueAxios from 'vue-axios';
+import axios from 'axios';
 
-import routes from "./routes";
-import VueRouter from "vue-router";
+import routes from './routes';
+import VueRouter from 'vue-router';
 Vue.use(VueRouter);
 const router = new VueRouter({
   routes,
 });
 
-import Vuelidate from "vuelidate";
-import "bootstrap/dist/css/bootstrap.css";
-import "bootstrap-vue/dist/bootstrap-vue.css";
+import Vuelidate from 'vuelidate';
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap-vue/dist/bootstrap-vue.css';
 import {
   FormGroupPlugin,
   FormPlugin,
@@ -24,7 +24,7 @@ import {
   AlertPlugin,
   ToastPlugin,
   LayoutPlugin,
-} from "bootstrap-vue";
+} from 'bootstrap-vue';
 [
   FormGroupPlugin,
   FormPlugin,
@@ -69,13 +69,13 @@ Vue.config.productionTip = false;
 const shared_data = {
   username: localStorage.username,
   login(username) {
-    localStorage.setItem("username", username);
+    localStorage.setItem('username', username);
     this.username = username;
-    console.log("login", this.username);
+    console.log('login', this.username);
   },
   logout() {
-    console.log("logout");
-    localStorage.removeItem("username");
+    console.log('logout');
+    localStorage.removeItem('username');
     this.username = undefined;
   },
 };
@@ -93,7 +93,7 @@ new Vue({
     toast(title, content, variant = null, append = false) {
       this.$bvToast.toast(`${content}`, {
         title: `${title}`,
-        toaster: "b-toaster-top-center",
+        toaster: 'b-toaster-top-center',
         variant: variant,
         solid: true,
         appendToast: append,
@@ -102,4 +102,4 @@ new Vue({
     },
   },
   render: (h) => h(App),
-}).$mount("#app");
+}).$mount('#app');

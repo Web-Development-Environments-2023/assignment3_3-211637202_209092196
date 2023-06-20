@@ -9,7 +9,7 @@
       :class="{
         RandomRecipes: true,
         blur: !$root.store.username,
-        center: true
+        center: true,
       }"
       disabled
     ></RecipePreviewList>
@@ -22,11 +22,11 @@
 </template>
 
 <script>
-import RecipePreviewList from "../components/RecipePreviewList";
+import RecipePreviewList from '../components/RecipePreviewList';
 export default {
   components: {
-    RecipePreviewList
-  }
+    RecipePreviewList,
+  },
 };
 </script>
 
