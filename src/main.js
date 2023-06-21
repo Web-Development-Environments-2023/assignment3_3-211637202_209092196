@@ -14,6 +14,7 @@ import Vuelidate from 'vuelidate';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
 import {
+  ModalPlugin,
   FormGroupPlugin,
   FormPlugin,
   FormInputPlugin,
@@ -26,6 +27,7 @@ import {
   LayoutPlugin,
 } from 'bootstrap-vue';
 [
+  ModalPlugin,
   FormGroupPlugin,
   FormPlugin,
   FormInputPlugin,
@@ -67,6 +69,7 @@ Vue.use(VueAxios, axios);
 Vue.config.productionTip = false;
 
 const shared_data = {
+  server_domain: 'http://localhost:3000',
   username: localStorage.username,
   login(username) {
     localStorage.setItem('username', username);

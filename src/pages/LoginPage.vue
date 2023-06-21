@@ -75,7 +75,7 @@ export default {
       try {
         const response = await this.axios.post(
           // "https://test-for-3-2.herokuapp.com/user/Login",
-          this.$root.store.server_domain + '/Login',
+          this.$root.store.server_domain + '/login',
           // "http://132.72.65.211:80/Login",
           // "http://132.73.84.100:80/Login",
 
@@ -111,5 +111,6 @@ export default {
 <style lang="scss" scoped>
 .container {
   max-width: 400px;
+  margin-top: 5%;
 }
 </style>
