@@ -1,23 +1,47 @@
 <template>
   <router-link :to="{ name: 'recipe', params: { recipeId: recipe.id } }" class="recipe-preview">
-    <div class="recipe-body">
-      <img v-if="image_load" :src="recipe.image" class="recipe-image" />
-    </div>
-    <div class="recipe-footer">
-      <div :title="recipe.title" class="recipe-title">
-        {{ recipe.title }}
-      </div>
-      <ul class="recipe-overview">
-        <li>{{ recipe.readyInMinutes }} minutes</li>
-        <li>{{ recipe.aggregateLikes }} likes</li>
-      </ul>
+    <div>
+      <b-card no-body style="max-width: 20rem;" :img-src="this.recipe.image" img-alt="Image" img-top>
+        <template #header>
+          <h4 class="mb-0">{{ recipe.title }}</h4>
+        </template>
+
+        <b-card-body>
+          <b-card-sub-title class="mb-2">Prepare time: {{ recipe.readyInMinutes }}</b-card-sub-title>
+          <b-card-text>
+            <small v-if="this.recipe.vegetarian">
+              vegetarian: yes
+            </small>
+            <small v-else>
+              vegeterian: no
+            </small>
+            <small v-if="this.recipe.vegan">
+              vegan: yes
+            </small>
+            <small v-else>
+              vegan: no
+            </small>
+            <small v-if="this.recipe.glutenFree">
+              gluten free: yes
+            </small>
+            <small v-else>
+              gluten free: no
+            </small>
+          </b-card-text>
+        </b-card-body>
+
+        <b-list-group flush>
+          <b-list-group-item>visited</b-list-group-item>
+          <b-list-group-item>favorite</b-list-group-item>
+        </b-list-group>
+      </b-card>
     </div>
   </router-link>
 </template>
 
 <script>
 export default {
-  name: 'RecipePreview', // added by me
+  name: 'RecipePreview',
   mounted() {
     this.axios.get(this.recipe.image).then((i) => {
       this.image_load = true;
@@ -26,37 +50,51 @@ export default {
   data() {
     return {
       image_load: false,
+      isFavorite: false,
+      isVisited: false,
     };
   },
+  // check later if the recipe is visited and if it is favorite
   props: {
     recipe: {
       type: Object,
       required: true,
     },
-
-    // id: {
-    //   type: Number,
-    //   required: true
-    // },
-    // title: {
-    //   type: String,
-    //   required: true
-    // },
-    // readyInMinutes: {
-    //   type: Number,
-    //   required: true
-    // },
-    // image: {
-    //   type: String,
-    //   required: true
-    // },
-    // aggregateLikes: {
-    //   type: Number,
-    //   required: false,
-    //   default() {
-    //     return undefined;
-    //   }
-    // }
+    id: {
+      type: Number,
+      required: true,
+    },
+    title: {
+      type: String,
+      required: true,
+    },
+    readyInMinutes: {
+      type: Number,
+      required: true,
+    },
+    image: {
+      type: String,
+      required: true,
+    },
+    aggregateLikes: {
+      type: Number,
+      required: false,
+      default() {
+        return undefined;
+      },
+    },
+    vegetarian: {
+      type: Boolean,
+      required: false,
+    },
+    vegan: {
+      type: Boolean,
+      required: false,
+    },
+    glutenFree: {
+      type: Boolean,
+      required: false,
+    },
   },
 };
 </script>

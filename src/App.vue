@@ -20,9 +20,9 @@
             <b-nav-item href="#" class="c2">
               <span v-if="$root.store.username">
                 <b-nav-item-dropdown text="Personal" variant="primary">
-                  <b-dropdown-item @click="navigateTo('favorites')" class="c3">Favorites</b-dropdown-item>
-                  <b-dropdown-item @click="navigateTo('myRecipes')" class="c3">My Recipes</b-dropdown-item>
-                  <b-dropdown-item @click="navigateTo('familyRecipes')" class="c3">Family Recipes</b-dropdown-item>
+                  <b-dropdown-item @click.stop="navigateTo('favorites')" class="c3">Favorites</b-dropdown-item>
+                  <b-dropdown-item @click.stop="navigateTo('myRecipes')" class="c3">My Recipes</b-dropdown-item>
+                  <b-dropdown-item @click.stop="navigateTo('familyRecipes')" class="c3">Family Recipes</b-dropdown-item>
                 </b-nav-item-dropdown>
               </span>
             </b-nav-item>
@@ -30,7 +30,7 @@
               <span v-if="$root.store.username">
                 <b-nav-item href="#">
                   <MakeRecipeModal>
-                    <b-button @click="$emit('open-modal')" class="button"></b-button>
+                    <b-button @click.stop="$emit('open-modal')" class="button"></b-button>
                   </MakeRecipeModal>
                 </b-nav-item>
               </span>
@@ -41,8 +41,8 @@
           <b-navbar-nav class="ml-auto">
             <span v-if="!$root.store.username">
               <b-nav-item-dropdown text="Hello Guest" right class="c2">
-                <b-dropdown-item @click="navigateTo('login')" class="c3">Login</b-dropdown-item>
-                <b-dropdown-item @click="navigateTo('register')" class="c3">Register</b-dropdown-item>
+                <b-dropdown-item @click.stop="navigateTo('login')" class="c3">Login</b-dropdown-item>
+                <b-dropdown-item @click.stop="navigateTo('register')" class="c3">Register</b-dropdown-item>
               </b-nav-item-dropdown>
             </span>
 
@@ -53,7 +53,7 @@
                   <em>{{ $root.store.username }}</em>
                 </template>
                 <b-dropdown-item href="#">
-                  <b-dropdown-item @click="Logout" class="c3">Log Out</b-dropdown-item>
+                  <b-dropdown-item @click.stop="Logout" class="c3">Log Out</b-dropdown-item>
                 </b-dropdown-item>
               </b-nav-item-dropdown>
             </span>
@@ -102,10 +102,11 @@ export default {
   min-height: 100vh;
 }
 
-#nav {
-  padding: 0px;
-  height: 100px;
-}
+// #nav {
+//   padding: 0px;
+//   height: 100px;
+//   color: #00000000;
+// }
 
 #nav .navbar {
   display: flex;

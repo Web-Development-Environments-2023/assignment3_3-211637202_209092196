@@ -10,7 +10,10 @@ const router = new VueRouter({
   routes,
 });
 
+axios.defaults.withCredentials = true;
+
 import Vuelidate from 'vuelidate';
+import VueCookies from 'vue-cookies';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
 import {
@@ -25,6 +28,8 @@ import {
   AlertPlugin,
   ToastPlugin,
   LayoutPlugin,
+  FormSpinbuttonPlugin,
+  FormCheckboxPlugin,
 } from 'bootstrap-vue';
 [
   ModalPlugin,
@@ -38,8 +43,11 @@ import {
   AlertPlugin,
   ToastPlugin,
   LayoutPlugin,
+  FormSpinbuttonPlugin,
+  FormCheckboxPlugin,
 ].forEach((x) => Vue.use(x));
 Vue.use(Vuelidate);
+Vue.use(VueCookies);
 
 axios.interceptors.request.use(
   function(config) {
@@ -83,7 +91,6 @@ const shared_data = {
   },
 };
 console.log(shared_data);
-// Vue.prototype.$root.store = shared_data;
 
 new Vue({
   router,
@@ -106,3 +113,5 @@ new Vue({
   },
   render: (h) => h(App),
 }).$mount('#app');
+
+Vue.prototype.$root.store = shared_data;
