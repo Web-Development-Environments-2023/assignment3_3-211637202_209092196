@@ -34,15 +34,64 @@
           </a>
         </li>
       </ul>
+      <br />
+      <b-button variant="outline-danger" size="lg" v-b-toggle.sidebar-1>Please click me!!</b-button>
+      <b-sidebar id="sidebar-1" title="Rate us" shadow>
+        <div class="px-3 py-2">
+          <p>
+            We will be more than happy if you can give us few seconds to rate our website.
+          </p>
+          <div>
+            <b-form-rating v-model="value" variant="primary" class="mb-2"></b-form-rating>
+            <p class="mt-2">Value: {{ value }}</p>
+          </div>
+          <div>
+            <b-form-group
+              id="fieldset-1"
+              description="Let us know your name."
+              label="Enter your name"
+              label-for="input-1"
+              valid-feedback="Thank you!"
+              :invalid-feedback="invalidFeedback"
+              :state="state"
+            >
+              <b-form-input id="input-1" v-model="name" :state="state" trim></b-form-input>
+            </b-form-group>
+          </div>
+          <b-button variant="success">Submit</b-button>
+        </div>
+      </b-sidebar>
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  computed: {
+    state() {
+      return this.name.length >= 3;
+    },
+    invalidFeedback() {
+      if (this.name.length > 0) {
+        return 'Enter at least 3 characters.';
+      }
+      return 'Please enter something.';
+    },
+  },
+  data() {
+    return {
+      value: null,
+      name: '',
+    };
+  },
+};
+</script>
 
 <style scoped>
 .about-page {
   position: relative;
   padding: 2rem;
-  background: linear-gradient(to bottom right, #ffc0cb, #add8e6);
+  background: linear-gradient(to bottom right, #fcdde2, #d1effa);
   overflow: hidden;
   width: 100%;
   height: 100vh;

@@ -1,9 +1,13 @@
 <template>
   <div>
-    <b-card no-body class="overflow-hidden" style="max-width: 800px;">
+    <b-card no-body class="overflow-hidden" style="max-width:">
       <b-row no-gutters>
         <b-col md="6">
-          <router-link :to="{ name: 'recipe', params: { recipeId: recipe.id } }" class="recipe-preview">
+          <router-link
+            :to="{ name: 'recipe', params: { recipeId: recipe.id } }"
+            class="recipe-preview"
+            @click.native.stop="addVisited"
+          >
             <b-card-img :src="this.recipe.image" alt="Image" class="img"></b-card-img>
           </router-link>
         </b-col>
@@ -38,10 +42,23 @@
                 <br />
               </small>
             </b-card-text>
+            <b-button
+              v-if="!this.isFavorite"
+              v-b-tooltip.hover
+              title="Press the photo and take a look at the recipe details :-)"
+            >
+              Hover Me
+            </b-button>
+            <b-button v-if="this.isFavorite" v-b-tooltip.hover title="You already visited this recipe :->">
+              Hover Me
+            </b-button>
+            <br />
+            <br />
             <b-list-group flush>
-              <b-list-group-item>visited</b-list-group-item>
-              <br />
-              <b-list-group-item>favorite</b-list-group-item>
+              <b-button v-if="!this.isFavorite" @click="addToFavorites" class="favButton">Add to Favorites</b-button>
+              <b-button v-if="this.isFavorite" :disabled="this.isFavorite" class="favButton">
+                Already added to favorites
+              </b-button>
             </b-list-group>
           </b-card-body>
         </b-col>
@@ -54,6 +71,8 @@
 export default {
   name: 'RecipePreview',
   mounted() {
+    this.checkFavoriteStatus();
+    this.checkVisitedStatus();
     this.axios.get(this.recipe.image).then((i) => {
       this.image_load = true;
     });
@@ -107,6 +126,59 @@ export default {
       required: false,
     },
   },
+  methods: {
+    async checkFavoriteStatus() {
+      try {
+        this.axios.defaults.withCredentials = true;
+        const response = await this.axios.get(this.$root.store.server_domain + '/users/favorites');
+        const favorites = response.data.map((recipe) => recipe.id);
+
+        // Check if the recipe ID is in the user's favorites
+        this.isFavorite = favorites.includes(this.recipe.id);
+
+        this.axios.defaults.withCredentials = false;
+      } catch (err) {
+        console.log(err.response);
+      }
+    },
+    async checkVisitedStatus() {
+      try {
+        this.axios.defaults.withCredentials = true;
+        const response = await this.axios.get(this.$root.store.server_domain + '/users/visited');
+        const Visited = response.data.map((recipe) => recipe.id);
+
+        this.isVisited = Visited.includes(this.recipe.id);
+
+        this.axios.defaults.withCredentials = false;
+      } catch (err) {
+        console.log(err.response);
+      }
+    },
+    async addVisited() {
+      try {
+        this.axios.defaults.withCredentials = true;
+        const response = await this.axios.post(this.$root.store.server_domain + '/users/visited', {
+          recipeId: this.recipe.id,
+        });
+        this.axios.defaults.withCredentials = false;
+        isVisited = true;
+      } catch (err) {
+        console.log(err.response);
+      }
+    },
+    async addToFavorites() {
+      try {
+        this.axios.defaults.withCredentials = true;
+        const response = await this.axios.post(this.$root.store.server_domain + '/users/favorites', {
+          recipeId: this.recipe.id,
+        });
+        this.axios.defaults.withCredentials = false;
+        isFavorite = true;
+      } catch (err) {
+        console.log(err.response);
+      }
+    },
+  },
 };
 </script>
 
@@ -118,9 +190,21 @@ export default {
 
 .overflow-hidden {
   width: 100%;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
 }
 
 .b-card-body {
   max-height: none;
+}
+
+.overflow-hidden:hover {
+  transform: translateY(-5px);
+}
+
+.favButton {
+  color: rgb(0, 0, 0);
 }
 </style>

@@ -30,6 +30,10 @@ import {
   LayoutPlugin,
   FormSpinbuttonPlugin,
   FormCheckboxPlugin,
+  SidebarPlugin,
+  FormRatingPlugin,
+  CarouselPlugin,
+  TooltipPlugin,
 } from 'bootstrap-vue';
 [
   ModalPlugin,
@@ -45,6 +49,10 @@ import {
   LayoutPlugin,
   FormSpinbuttonPlugin,
   FormCheckboxPlugin,
+  SidebarPlugin,
+  FormRatingPlugin,
+  CarouselPlugin,
+  TooltipPlugin,
 ].forEach((x) => Vue.use(x));
 Vue.use(Vuelidate);
 Vue.use(VueCookies);
@@ -88,6 +96,8 @@ const shared_data = {
     console.log('logout');
     localStorage.removeItem('username');
     this.username = undefined;
+
+    sessionStorage.removeItem('lastSearch');
   },
 };
 console.log(shared_data);

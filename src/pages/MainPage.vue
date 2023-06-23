@@ -14,7 +14,7 @@
           You need to Login to vue this
         </router-link>
         <RecipePreviewList
-          title="LastViewed"
+          title="Last Viewed"
           :class="{
             // RandomRecipes: true,
             blur: !$root.store.username,
@@ -53,13 +53,11 @@ export default {
   pointer-events: none;
   cursor: default;
 }
-.RandomRecipes {
-  margin: 10px 0;
-}
-.row-with-spacing {
-  display: flex;
-  justify-content: center;
-}
+
+// .row-with-spacing {
+//   display: flex;
+//   justify-content: center;
+// }
 .login {
   position: relative;
   top: 20px;
