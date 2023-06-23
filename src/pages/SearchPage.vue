@@ -155,105 +155,105 @@ export default {
     },
     async Search() {
       try {
-        const response = [
-          {
-            id: 102,
-            title: 'Simple Macaroni and Cheese',
-            image:
-              'https://static01.nyt.com/images/2021/02/28/dining/ch-pasta-alla-vodka/merlin_145792752_fabec26c-908c-4f71-8c84-2b145849da43-superJumbo.jpg?quality=75&auto=webp',
-            readyInMinutes: 45,
-            popularity: 5987,
-            vegetarian: false,
-            vegan: false,
-            glutenFree: false,
-            analyzedInstructions: [
-              {
-                name: '',
-                steps: [
-                  {
-                    number: 1,
-                    step:
-                      'Deep fry shallot till golden brown, drain oil and set aside.  Retain the oil for later use.Wash rice and add oil.',
-                    ingredients: [
-                      {
-                        id: 11677,
-                        name: 'shallot',
-                        localizedName: 'shallot',
-                        image: 'shallots.jpg',
-                      },
-                      {
-                        id: 20444,
-                        name: 'rice',
-                        localizedName: 'rice',
-                        image: 'uncooked-white-rice.png',
-                      },
-                      {
-                        id: 4582,
-                        name: 'cooking oil',
-                        localizedName: 'cooking oil',
-                        image: 'vegetable-oil.jpg',
-                      },
-                    ],
-                    equipment: [],
-                  },
-                ],
-              },
-            ],
-          },
-          {
-            id: 102,
-            title: 'Simple Macaroni and Cheese',
-            image:
-              'https://static01.nyt.com/images/2021/02/28/dining/ch-pasta-alla-vodka/merlin_145792752_fabec26c-908c-4f71-8c84-2b145849da43-superJumbo.jpg?quality=75&auto=webp',
-            readyInMinutes: 45,
-            popularity: 5987,
-            vegetarian: false,
-            vegan: false,
-            glutenFree: false,
-            analyzedInstructions: [
-              {
-                name: '',
-                steps: [
-                  {
-                    number: 1,
-                    step:
-                      'Deep fry shallot till golden brown, drain oil and set aside.  Retain the oil for later use.Wash rice and add oil.',
-                    ingredients: [
-                      {
-                        id: 11677,
-                        name: 'shallot',
-                        localizedName: 'shallot',
-                        image: 'shallots.jpg',
-                      },
-                      {
-                        id: 20444,
-                        name: 'rice',
-                        localizedName: 'rice',
-                        image: 'uncooked-white-rice.png',
-                      },
-                      {
-                        id: 4582,
-                        name: 'cooking oil',
-                        localizedName: 'cooking oil',
-                        image: 'vegetable-oil.jpg',
-                      },
-                    ],
-                    equipment: [],
-                  },
-                ],
-              },
-            ],
-          },
-        ];
-        // const response = await this.axios.get(
-        //   `${this.$root.store.server_domain}/recipes/search/${this.form.query}/${this.form.number}`,
+        // const response = [
         //   {
-        //     cuisine: this.form.cuisine,
-        //     diet: this.form.diet,
-        //     intolerance: this.form.intolerance,
-        //     sortBy: this.form.sortBy,
-        //   }
-        // );
+        //     id: 102,
+        //     title: 'Simple Macaroni and Cheese',
+        //     image:
+        //       'https://static01.nyt.com/images/2021/02/28/dining/ch-pasta-alla-vodka/merlin_145792752_fabec26c-908c-4f71-8c84-2b145849da43-superJumbo.jpg?quality=75&auto=webp',
+        //     readyInMinutes: 45,
+        //     popularity: 5987,
+        //     vegetarian: false,
+        //     vegan: false,
+        //     glutenFree: false,
+        //     analyzedInstructions: [
+        //       {
+        //         name: '',
+        //         steps: [
+        //           {
+        //             number: 1,
+        //             step:
+        //               'Deep fry shallot till golden brown, drain oil and set aside.  Retain the oil for later use.Wash rice and add oil.',
+        //             ingredients: [
+        //               {
+        //                 id: 11677,
+        //                 name: 'shallot',
+        //                 localizedName: 'shallot',
+        //                 image: 'shallots.jpg',
+        //               },
+        //               {
+        //                 id: 20444,
+        //                 name: 'rice',
+        //                 localizedName: 'rice',
+        //                 image: 'uncooked-white-rice.png',
+        //               },
+        //               {
+        //                 id: 4582,
+        //                 name: 'cooking oil',
+        //                 localizedName: 'cooking oil',
+        //                 image: 'vegetable-oil.jpg',
+        //               },
+        //             ],
+        //             equipment: [],
+        //           },
+        //         ],
+        //       },
+        //     ],
+        //   },
+        //   {
+        //     id: 102,
+        //     title: 'Simple Macaroni and Cheese',
+        //     image:
+        //       'https://static01.nyt.com/images/2021/02/28/dining/ch-pasta-alla-vodka/merlin_145792752_fabec26c-908c-4f71-8c84-2b145849da43-superJumbo.jpg?quality=75&auto=webp',
+        //     readyInMinutes: 45,
+        //     popularity: 5987,
+        //     vegetarian: false,
+        //     vegan: false,
+        //     glutenFree: false,
+        //     analyzedInstructions: [
+        //       {
+        //         name: '',
+        //         steps: [
+        //           {
+        //             number: 1,
+        //             step:
+        //               'Deep fry shallot till golden brown, drain oil and set aside.  Retain the oil for later use.Wash rice and add oil.',
+        //             ingredients: [
+        //               {
+        //                 id: 11677,
+        //                 name: 'shallot',
+        //                 localizedName: 'shallot',
+        //                 image: 'shallots.jpg',
+        //               },
+        //               {
+        //                 id: 20444,
+        //                 name: 'rice',
+        //                 localizedName: 'rice',
+        //                 image: 'uncooked-white-rice.png',
+        //               },
+        //               {
+        //                 id: 4582,
+        //                 name: 'cooking oil',
+        //                 localizedName: 'cooking oil',
+        //                 image: 'vegetable-oil.jpg',
+        //               },
+        //             ],
+        //             equipment: [],
+        //           },
+        //         ],
+        //       },
+        //     ],
+        //   },
+        // ];
+        const response = await this.axios.get(
+          `${this.$root.store.server_domain}/recipes/search/${form.query}/${form.number}`,
+          {
+            cuisine: this.form.cuisine,
+            diet: this.form.diet,
+            intolerance: this.form.intolerance,
+            sortBy: this.form.sortBy,
+          }
+        );
 
         console.log(response);
         // const recipes = response.data;
@@ -261,7 +261,7 @@ export default {
         this.recipes = [];
         this.recipes.push(...recipes);
 
-        sessionStorage.setItem('lastSearch', JSON.stringify(this.recipes)); //////////////////////////////////////////////////////////////////
+        sessionStorage.setItem('lastSearch', JSON.stringify(this.recipes));
       } catch (err) {
         console.log(err.response);
         this.form.submitError = err.response.data.message;

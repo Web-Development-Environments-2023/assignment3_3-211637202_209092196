@@ -58,7 +58,8 @@
               <b-form-input id="input-1" v-model="name" :state="state" trim></b-form-input>
             </b-form-group>
           </div>
-          <b-button variant="success">Submit</b-button>
+          <b-button variant="success" @click.stop="onClick">Submit</b-button>
+          <p v-if="showMsg">Thank you :-></p>
         </div>
       </b-sidebar>
     </div>
@@ -82,7 +83,14 @@ export default {
     return {
       value: null,
       name: '',
+      showMsg: false,
     };
+  },
+  methods: {
+    onClick() {
+      this.showOclockMsg = true;
+      this.showMsg = true;
+    },
   },
 };
 </script>

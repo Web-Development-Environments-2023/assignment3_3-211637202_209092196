@@ -118,28 +118,28 @@ export default {
             vegetarian: true,
             glutenFree: true,
           },
-          // {
-          //   id: 640318,
-          //   title: 'Crab Salad Stuffed Pita Pockets',
-          //   readyInMinutes: 25,
-          //   image:
-          //     'https://static01.nyt.com/images/2021/02/17/dining/17tootired-grilled-cheese/17tootired-grilled-cheese-superJumbo.jpg?quality=75&auto=webp',
-          //   popularity: 8,
-          //   vegan: false,
-          //   vegetarian: false,
-          //   glutenFree: false,
-          // },
-          // {
-          //   id: 636732,
-          //   title: 'Cajun Lobster Pasta',
-          //   readyInMinutes: 45,
-          //   image:
-          //     'https://static01.nyt.com/images/2021/02/28/dining/ch-pasta-alla-vodka/merlin_145792752_fabec26c-908c-4f71-8c84-2b145849da43-superJumbo.jpg?quality=75&auto=webp',
-          //   popularity: 2,
-          //   vegan: false,
-          //   vegetarian: false,
-          //   glutenFree: true,
-          // },
+          {
+            id: 640318,
+            title: 'Crab Salad Stuffed Pita Pockets',
+            readyInMinutes: 25,
+            image:
+              'https://static01.nyt.com/images/2021/02/17/dining/17tootired-grilled-cheese/17tootired-grilled-cheese-superJumbo.jpg?quality=75&auto=webp',
+            popularity: 8,
+            vegan: false,
+            vegetarian: false,
+            glutenFree: false,
+          },
+          {
+            id: 636732,
+            title: 'Cajun Lobster Pasta',
+            readyInMinutes: 45,
+            image:
+              'https://static01.nyt.com/images/2021/02/28/dining/ch-pasta-alla-vodka/merlin_145792752_fabec26c-908c-4f71-8c84-2b145849da43-superJumbo.jpg?quality=75&auto=webp',
+            popularity: 2,
+            vegan: false,
+            vegetarian: false,
+            glutenFree: true,
+          },
         ];
 
         this.recipes = [...recipes];
