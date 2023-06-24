@@ -60,6 +60,9 @@
           </div>
           <b-button variant="success" @click.stop="onClick">Submit</b-button>
           <p v-if="showMsg">Thank you :-></p>
+          <p v-if="this.value === null">
+            Please fill in the rating form and enter at least 3 characters for your name.
+          </p>
         </div>
       </b-sidebar>
     </div>
@@ -88,8 +91,14 @@ export default {
   },
   methods: {
     onClick() {
-      this.showOclockMsg = true;
-      this.showMsg = true;
+      // this.showOclockMsg = true;
+      if (this.value === null) {
+        console.log('Please fill in the rating form.');
+      } else if (!this.state) {
+        // State is false, do nothing
+      } else {
+        this.showMsg = true;
+      }
     },
   },
 };

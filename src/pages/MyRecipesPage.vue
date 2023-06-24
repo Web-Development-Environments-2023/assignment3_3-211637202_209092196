@@ -45,7 +45,7 @@ export default {
       try {
         this.axios.defaults.withCredentials = true;
         const response = await this.axios.get(this.$root.store.server_domain + '/users/myrecipes');
-
+        console.log(localStorage.getItem('username'));
         this.axios.defaults.withCredentials = false;
         const recipes = response.data;
         this.recipes = [];

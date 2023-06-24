@@ -13,9 +13,6 @@
         <b-form-invalid-feedback v-if="!$v.form.number.required">
           Query is required
         </b-form-invalid-feedback>
-        <b-form-invalid-feedback v-if="!$v.form.number.alpha">
-          Query should contain letters only
-        </b-form-invalid-feedback>
       </b-form-group>
 
       <b-form-group id="input-group-number" label-cols-sm="3" label="Number:" label-for="number">
@@ -124,7 +121,6 @@ export default {
   validations: {
     form: {
       query: {
-        alpha,
         required,
       },
       number: {
@@ -246,7 +242,7 @@ export default {
         //   },
         // ];
         const response = await this.axios.get(
-          `${this.$root.store.server_domain}/recipes/search/${form.query}/${form.number}`,
+          `${this.$root.store.server_domain}/recipes/search/${this.form.query}/${this.form.number}`,
           {
             cuisine: this.form.cuisine,
             diet: this.form.diet,
@@ -256,14 +252,14 @@ export default {
         );
 
         console.log(response);
-        // const recipes = response.data;
-        const recipes = response;
+        // const recipes = response;
+        const recipes = response.data;
         this.recipes = [];
         this.recipes.push(...recipes);
 
         sessionStorage.setItem('lastSearch', JSON.stringify(this.recipes));
       } catch (err) {
-        console.log(err.response);
+        // console.log(err.response);
         this.form.submitError = err.response.data.message;
       }
     },

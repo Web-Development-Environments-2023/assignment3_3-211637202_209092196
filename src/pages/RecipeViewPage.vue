@@ -81,108 +81,96 @@ export default {
     };
   },
   async created() {
+    // try {
+    // let response = {
+    //   id: 102,
+    //   title: 'Simple Macaroni and Cheese',
+    //   image:
+    //     'https://static01.nyt.com/images/2021/02/28/dining/ch-pasta-alla-vodka/merlin_145792752_fabec26c-908c-4f71-8c84-2b145849da43-superJumbo.jpg?quality=75&auto=webp',
+    //   readyInMinutes: 45,
+    //   popularity: 5987,
+    //   vegetarian: false,
+    //   vegan: true,
+    //   glutenFree: false,
+    //   extendedIngredients: [
+    //     {
+    //       id: 11124,
+    //       aisle: 'Produce',
+    //       image: 'sliced-carrot.png',
+    //       consistency: 'SOLID',
+    //       name: 'carrot',
+    //       nameClean: 'carrot',
+    //       original: '½ cup diced carrot',
+    //       originalName: 'diced carrot',
+    //       amount: 0.5,
+    //       unit: 'cup',
+    //       meta: ['diced'],
+    //       measures: {
+    //         us: {
+    //           amount: 0.5,
+    //           unitShort: 'cups',
+    //           unitLong: 'cups',
+    //         },
+    //         metric: {
+    //           amount: 118.294,
+    //           unitShort: 'ml',
+    //           unitLong: 'milliliters',
+    //         },
+    //       },
+    //     },
+    //   ],
+    //   analyzedInstructions: [
+    //     {
+    //       name: '',
+    //       steps: [
+    //         {
+    //           number: 1,
+    //           step:
+    //             'Deep fry shallot till golden brown, drain oil and set aside.  Retain the oil for later use.Wash rice and add oil.',
+    //           ingredients: [
+    //             {
+    //               id: 11677,
+    //               name: 'shallot',
+    //               localizedName: 'shallot',
+    //               image: 'shallots.jpg',
+    //             },
+    //             {
+    //               id: 20444,
+    //               name: 'rice',
+    //               localizedName: 'rice',
+    //               image: 'uncooked-white-rice.png',
+    //             },
+    //             {
+    //               id: 4582,
+    //               name: 'cooking oil',
+    //               localizedName: 'cooking oil',
+    //               image: 'vegetable-oil.jpg',
+    //             },
+    //           ],
+    //           equipment: [],
+    //         },
+    //       ],
+    //     },
+    //   ],
+    //   servings: 10,
+    // };
+
+    // let response;
+    // response = this.$route.params.response;
+
     try {
-      let response = {
-        id: 102,
-        title: 'Simple Macaroni and Cheese',
-        image:
-          'https://static01.nyt.com/images/2021/02/28/dining/ch-pasta-alla-vodka/merlin_145792752_fabec26c-908c-4f71-8c84-2b145849da43-superJumbo.jpg?quality=75&auto=webp',
-        readyInMinutes: 45,
-        popularity: 5987,
-        vegetarian: false,
-        vegan: true,
-        glutenFree: false,
-        extendedIngredients: [
-          {
-            id: 11124,
-            aisle: 'Produce',
-            image: 'sliced-carrot.png',
-            consistency: 'SOLID',
-            name: 'carrot',
-            nameClean: 'carrot',
-            original: '½ cup diced carrot',
-            originalName: 'diced carrot',
-            amount: 0.5,
-            unit: 'cup',
-            meta: ['diced'],
-            measures: {
-              us: {
-                amount: 0.5,
-                unitShort: 'cups',
-                unitLong: 'cups',
-              },
-              metric: {
-                amount: 118.294,
-                unitShort: 'ml',
-                unitLong: 'milliliters',
-              },
-            },
-          },
-        ],
-        analyzedInstructions: [
-          {
-            name: '',
-            steps: [
-              {
-                number: 1,
-                step:
-                  'Deep fry shallot till golden brown, drain oil and set aside.  Retain the oil for later use.Wash rice and add oil.',
-                ingredients: [
-                  {
-                    id: 11677,
-                    name: 'shallot',
-                    localizedName: 'shallot',
-                    image: 'shallots.jpg',
-                  },
-                  {
-                    id: 20444,
-                    name: 'rice',
-                    localizedName: 'rice',
-                    image: 'uncooked-white-rice.png',
-                  },
-                  {
-                    id: 4582,
-                    name: 'cooking oil',
-                    localizedName: 'cooking oil',
-                    image: 'vegetable-oil.jpg',
-                  },
-                ],
-                equipment: [],
-              },
-            ],
-          },
-        ],
-        servings: 10,
-      };
+      // const response = await this.axios.get(
+      //   `${this.$root.store.server_domain}/users/myrecipes/allInformations/${title}`
+      // );
+      const id = this.$route.params.recipeId;
+      const response = await this.axios.get(`${this.$root.store.server_domain}/recipes/allInformations/${id}`);
 
-      // let response;
-      // response = this.$route.params.response;
-
-      // try {
-      //   response = await this.axios.get(`${this.$root.store.server_domain}/recipes/allinformations/${this.recipe.id}`, {
-      //     params: { id: this.$route.params.recipeId },
-      //   });
-
-      //   if (response.status !== 200) this.$router.replace('/NotFound');
+      if (response.status !== 200) this.$router.replace('/NotFound');
       // } catch (error) {
       //   console.log('error.response.status', error.response.status);
       //   this.$router.replace('/NotFound');
       //   return;
       // }
-
-      // let {
-      //   analyzedInstructions,
-      //   instructions,
-      //   extendedIngredients,
-      //   popularity,
-      //   readyInMinutes,
-      //   image,
-      //   title,
-      //   vegetarian,
-      //   vegan,
-      //   glutenFree,
-      //   servings,
-      // } = response.data;
 
       let {
         analyzedInstructions,
@@ -196,7 +184,21 @@ export default {
         vegan,
         glutenFree,
         servings,
-      } = response;
+      } = response.data;
+
+      // let {
+      //   analyzedInstructions,
+      //   instructions,
+      //   extendedIngredients,
+      //   popularity,
+      //   readyInMinutes,
+      //   image,
+      //   title,
+      //   vegetarian,
+      //   vegan,
+      //   glutenFree,
+      //   servings,
+      // } = response;
 
       let _instructions = analyzedInstructions
         .map((fstep) => {
@@ -222,7 +224,9 @@ export default {
 
       this.recipe = _recipe;
     } catch (error) {
-      console.log(error);
+      console.log('error.response.status', error.response.status);
+      this.$router.replace('/NotFound');
+      return;
     }
   },
   methods: {
