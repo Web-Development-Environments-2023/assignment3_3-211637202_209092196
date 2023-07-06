@@ -145,6 +145,7 @@ export default {
         const response = await this.axios.get(this.$root.store.server_domain + '/users/visited');
         const Visited = response.data.map((recipe) => recipe.id);
         this.isVisited = Visited.includes(this.recipe.id);
+        console.log(Visited);
         this.axios.defaults.withCredentials = false;
       } catch (err) {
         console.log(err.response);
