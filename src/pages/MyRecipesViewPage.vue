@@ -81,7 +81,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .full-page-container {
   display: flex;
   justify-content: center;

@@ -29,8 +29,13 @@
       <h2 class="section-title">Previous Exercises 💪</h2>
       <ul class="exercise-list">
         <li>
+          <a href="https://web-development-environments-2023.github.io/211637202/">
+            Exercise 1: 😊 press here 😊
+          </a>
+        </li>
+        <li>
           <a href="https://github.com/Web-Development-Environments-2023/assignment2-209092196_211637202">
-            Exercise 1: 🚀 Spaceship Game 🕹️
+            Exercise 2: 🚀 Spaceship Game 🕹️
           </a>
         </li>
       </ul>

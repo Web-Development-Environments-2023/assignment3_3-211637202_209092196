@@ -24,12 +24,23 @@
 
         <b-list-group flush>
           <b-list-group-item>
-            <p>Extended Ingredients: {{ recipe.extendedIngredients }}</p>
+            <p>Extended Ingredients:</p>
+            <ul>
+              <li v-for="(ingredient, index) in recipe.extendedIngredients.split('\n')" :key="index">
+                {{ ingredient }}
+              </li>
+            </ul>
           </b-list-group-item>
           <br />
           <b-list-group-item>
-            <p>Analyzed Instructions: {{ recipe.analyzedInstructions }}</p>
+            <p>Analyzed Instructions:</p>
+            <ul>
+              <li v-for="(instruction, index) in recipe.analyzedInstructions.split('\n')" :key="index">
+                {{ instruction }}
+              </li>
+            </ul>
           </b-list-group-item>
+
           <br />
           <div class="line"></div>
           <br />
@@ -85,7 +96,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .full-page-container {
   display: flex;
   justify-content: center;

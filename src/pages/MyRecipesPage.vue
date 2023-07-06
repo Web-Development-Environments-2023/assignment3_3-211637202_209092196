@@ -60,7 +60,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .page-title {
   text-align: center;
   font-size: 2rem;

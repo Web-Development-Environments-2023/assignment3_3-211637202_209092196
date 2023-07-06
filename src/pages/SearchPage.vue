@@ -32,19 +32,24 @@
       </b-form-group>
 
       <b-form-group id="input-group-cuisine" label-cols-sm="3" label="Cuisine:" label-for="cuisine">
-        <b-form-select id="cuisine" style="width: 400px;" :options="cuisines"></b-form-select>
+        <b-form-select id="cuisine" style="width: 400px;" :options="cuisines" v-model="selectedCuisine"></b-form-select>
       </b-form-group>
 
       <b-form-group id="input-group-diet" label-cols-sm="3" label="Diet:" label-for="diet">
-        <b-form-select id="diet" style="width: 400px;" :options="diets"></b-form-select>
+        <b-form-select id="diet" style="width: 400px;" :options="diets" v-model="form.diet"></b-form-select>
       </b-form-group>
 
       <b-form-group id="input-group-intolerances" label-cols-sm="3" label="Intolerances:" label-for="intolerances">
-        <b-form-select id="intolerances" style="width: 400px;" :options="intolerances"></b-form-select>
+        <b-form-select
+          id="intolerances"
+          style="width: 400px;"
+          :options="intolerances"
+          v-model="form.intolerance"
+        ></b-form-select>
       </b-form-group>
 
       <b-form-group id="input-group-sortBy" label-cols-sm="3" label="Sort by:" label-for="sortBy">
-        <b-form-select id="sortBy" style="width: 400px;" :options="sortBy"></b-form-select>
+        <b-form-select id="sortBy" style="width: 400px;" :options="sortBy" v-model="form.sortBy"></b-form-select>
       </b-form-group>
 
       <b-button type="reset" variant="danger" style="margin-right: 4px;">Reset</b-button>
@@ -102,7 +107,7 @@ export default {
       form: {
         query: '',
         number: '5',
-        cuisine: null,
+        cuisine: '',
         diet: null,
         intolerance: null,
         sortBy: null,
@@ -143,6 +148,16 @@ export default {
     if (storedSearch) {
       this.recipes = JSON.parse(storedSearch);
     }
+  },
+  computed: {
+    selectedCuisine: {
+      get() {
+        return this.form.cuisine;
+      },
+      set(value) {
+        this.form.cuisine = value;
+      },
+    },
   },
   methods: {
     validateState(param) {
@@ -276,14 +291,20 @@ export default {
       this.form = {
         query: '',
         number: '5',
-        cuisine: null,
+        cuisine: '',
         diet: null,
         intolerance: null,
         sortBy: null,
+        submitError: undefined,
       };
-      this.$nextTick(() => {
-        this.$v.$reset();
-      });
+
+      // Reset the selected values in the b-form-select components
+      this.cuisine = null;
+      this.form.diet = null;
+      this.form.intolerance = null;
+      this.form.sortBy = null;
+
+      this.$v.$reset(); // Reset the vuelidate validation state
     },
   },
 };
