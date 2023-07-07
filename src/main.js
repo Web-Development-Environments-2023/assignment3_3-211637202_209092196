@@ -34,6 +34,8 @@ import {
   FormRatingPlugin,
   CarouselPlugin,
   TooltipPlugin,
+  FormTextareaPlugin,
+  ListGroupPlugin,
 } from 'bootstrap-vue';
 [
   ModalPlugin,
@@ -53,6 +55,8 @@ import {
   FormRatingPlugin,
   CarouselPlugin,
   TooltipPlugin,
+  FormTextareaPlugin,
+  ListGroupPlugin,
 ].forEach((x) => Vue.use(x));
 Vue.use(Vuelidate);
 Vue.use(VueCookies);

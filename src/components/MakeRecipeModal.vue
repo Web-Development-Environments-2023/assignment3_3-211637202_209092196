@@ -2,15 +2,7 @@
   <div>
     <b-button @click="openModal" class="button">Make a Recipe</b-button>
 
-    <b-modal
-      id="modal-prevent-closing"
-      ref="modal"
-      title="Submit Your Recipe"
-      @show="resetModal"
-      @hidden="resetModal"
-      @ok="submit"
-      hide-footer
-    >
+    <b-modal id="modal-prevent-closing" ref="modal" title="Submit Your Recipe" hide-footer>
       <b-form @submit.prevent="onSubmit" @reset.prevent="onReset">
         <b-form-group id="input-group-title" label-cols-sm="3" label="Title:" label-for="title">
           <b-form-input
@@ -63,12 +55,11 @@
           label="Ingredients:"
           label-for="extendedIngredients"
         >
-          <b-form-input
+          <b-form-textarea
             id="extendedIngredients"
             v-model="$v.form.extendedIngredients.$model"
-            type="text"
             :state="validateState('extendedIngredients')"
-          ></b-form-input>
+          ></b-form-textarea>
           <b-form-invalid-feedback v-if="!$v.form.extendedIngredients.required">
             Ingredients is required
           </b-form-invalid-feedback>
@@ -80,12 +71,11 @@
           label="Instructions:"
           label-for="analyzedInstructions"
         >
-          <b-form-input
-            id="extendedIngredients"
+          <b-form-textarea
+            id="analyzedInstructions"
             v-model="$v.form.analyzedInstructions.$model"
-            type="text"
             :state="validateState('analyzedInstructions')"
-          ></b-form-input>
+          ></b-form-textarea>
           <b-form-invalid-feedback v-if="!$v.form.analyzedInstructions.required">
             Instructions is required
           </b-form-invalid-feedback>

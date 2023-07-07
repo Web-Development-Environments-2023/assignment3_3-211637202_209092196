@@ -20,12 +20,23 @@
 
         <b-list-group flush>
           <b-list-group-item>
-            <p>Extended Ingredients: {{ recipe.extendedIngredients }}</p>
+            <p>Extended Ingredients:</p>
+            <ul>
+              <li v-for="(ingredient, index) in recipe.extendedIngredients.split('\n')" :key="index">
+                {{ ingredient }}
+              </li>
+            </ul>
           </b-list-group-item>
           <br />
           <b-list-group-item>
-            <p>Analyzed Instructions: {{ recipe.analyzedInstructions }}</p>
+            <p>Analyzed Instructions:</p>
+            <ul>
+              <li v-for="(instruction, index) in recipe.analyzedInstructions.split('\n')" :key="index">
+                {{ instruction }}
+              </li>
+            </ul>
           </b-list-group-item>
+
           <br />
           <div class="line"></div>
           <br />
@@ -54,13 +65,11 @@ export default {
     },
     async fetchRecipeDetails() {
       const title = this.$route.params.title;
-
       try {
         this.axios.defaults.withCredentials = true;
         const response = await this.axios.get(
           `${this.$root.store.server_domain}/users/myrecipes/allInformations/${title}`
         );
-
         this.axios.defaults.withCredentials = false;
         this.recipe = response.data[0];
         console.log('Recipe details:', this.recipe); // Check the fetched data in the console

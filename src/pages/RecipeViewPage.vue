@@ -46,7 +46,7 @@
               <li
                 v-for="(r, index) in recipe.extendedIngredients"
                 :key="index + '_' + r.id"
-                style="font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; color: blue;"
+                style="font-family: 'Courier New', Courier, monospace; color: rgba(0, 0, 0, 0.918);"
               >
                 {{ r.original }}
               </li>
@@ -55,7 +55,7 @@
           <br />
           <b-list-group-item>
             Instructions:
-            <ol style="font-family: 'Courier New', Courier, monospace; color: rgb(41, 21, 198);">
+            <ol style="font-family: 'Courier New', Courier, monospace; color: rgba(1, 0, 8, 0.897);">
               <li v-for="s in recipe._instructions" :key="s.number">
                 {{ s.step }}
               </li>
@@ -155,23 +155,11 @@ export default {
     //     servings: 10,
     //   };
 
-    // let response;
-    // response = this.$route.params.response;
-
     try {
-      // const response = await this.axios.get(
-      //   `${this.$root.store.server_domain}/users/myrecipes/allInformations/${title}`
-      // );
-
       const id = this.$route.params.recipeId;
       const response = await this.axios.get(`${this.$root.store.server_domain}/recipes/allInformations/${id}`);
 
       if (response.status !== 200) this.$router.replace('/NotFound');
-      // } catch (error) {
-      //   console.log('error.response.status', error.response.status);
-      //   this.$router.replace('/NotFound');
-      //   return;
-      // }
 
       let {
         analyzedInstructions,

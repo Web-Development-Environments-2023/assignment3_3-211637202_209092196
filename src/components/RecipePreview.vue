@@ -3,12 +3,8 @@
     <b-card no-body class="overflow-hidden" style="max-width:">
       <b-row no-gutters>
         <b-col md="6">
-          <router-link
-            :to="{ name: 'recipe', params: { recipeId: recipe.id } }"
-            class="recipe-preview"
-            @click.native.stop="addVisited"
-          >
-            <b-card-img :src="this.recipe.image" alt="Image" class="img"></b-card-img>
+          <router-link :to="{ name: 'recipe', params: { recipeId: recipe.id } }" class="recipe-preview">
+            <b-card-img :src="this.recipe.image" alt="Image" class="img" @click="addVisited"></b-card-img>
           </router-link>
         </b-col>
         <b-col md="6">
@@ -43,18 +39,18 @@
               </small>
             </b-card-text>
             <b-button
-              v-if="!this.isFavorite"
+              v-if="!this.isVisited"
               v-b-tooltip.hover
               title="Press the photo and take a look at the recipe details :-)"
             >
               Hover Me
             </b-button>
-            <b-button v-if="this.isFavorite" v-b-tooltip.hover title="You already visited this recipe :->">
+            <b-button v-if="this.isVisited" v-b-tooltip.hover title="You already visited this recipe :->">
               Hover Me
             </b-button>
             <br />
             <br />
-            <b-list-group flush>
+            <b-list-group v-if="$root.store.username" flush>
               <b-button v-if="!this.isFavorite" @click="addToFavorites" class="favButton">Add to Favorites</b-button>
               <b-button v-if="this.isFavorite" :disabled="this.isFavorite" class="favButton">
                 Already added to favorites
@@ -90,44 +86,45 @@ export default {
       type: Object,
       required: true,
     },
-    id: {
-      type: Number,
-      required: true,
-    },
-    title: {
-      type: String,
-      required: true,
-    },
-    readyInMinutes: {
-      type: Number,
-      required: true,
-    },
-    image: {
-      type: String,
-      required: true,
-    },
-    aggregateLikes: {
-      type: Number,
-      required: false,
-      default() {
-        return undefined;
-      },
-    },
-    vegetarian: {
-      type: Boolean,
-      required: false,
-    },
-    vegan: {
-      type: Boolean,
-      required: false,
-    },
-    glutenFree: {
-      type: Boolean,
-      required: false,
-    },
+    // id: {
+    //   type: Number,
+    //   required: true,
+    // },
+    // title: {
+    //   type: String,
+    //   required: true,
+    // },
+    // readyInMinutes: {
+    //   type: Number,
+    //   required: true,
+    // },
+    // image: {
+    //   type: String,
+    //   required: true,
+    // },
+    // aggregateLikes: {
+    //   type: Number,
+    //   required: false,
+    //   default() {
+    //     return undefined;
+    //   },
+    // },
+    // vegetarian: {
+    //   type: Boolean,
+    //   required: false,
+    // },
+    // vegan: {
+    //   type: Boolean,
+    //   required: false,
+    // },
+    // glutenFree: {
+    //   type: Boolean,
+    //   required: false,
+    // },
   },
   methods: {
     async checkFavoriteStatus() {
+      console.log(this.recipe.id);
       try {
         this.axios.defaults.withCredentials = true;
         const response = await this.axios.get(this.$root.store.server_domain + '/users/favorites');
@@ -158,7 +155,7 @@ export default {
           recipeId: this.recipe.id,
         });
         this.axios.defaults.withCredentials = false;
-        isVisited = true;
+        this.isVisited = true;
       } catch (err) {
         console.log(err.response);
       }
